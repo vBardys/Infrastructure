@@ -7,4 +7,8 @@ By selecting different branches you can get the sample code that you should have
 |Branches  | Block  | Description  | 
 |---|---|---|
 | main | CI/CD 1 | Jenkins controller Dockerfile and plugins.txt  |
-| docker_compose | CI/CD 2 | casc.yml, docker-compose.yml for Jenkins and Sonarqube |
+| docker_compose | CI/CD 2 | jenkins.yaml, docker-compose.yml for Jenkins and Sonarqube |
+| artifactory | Artifactory | Artifactory configuration files |
+| jenkins_agent | CI/CD 3 | Artifactory,Jenkins agent dockers and configuration files |
+| selenium | CI/CD 6 | Selenium grid compose, Job DSL |
+| final | CI/CD 7 | Terraform tool configuration |
