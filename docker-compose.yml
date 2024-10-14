@@ -8,6 +8,8 @@ services:
       - "50000:50000"
       - "8880:8080"
     restart: always
+    volumes:
+      - ./jenkins_controller/jenkins.yaml:/usr/share/jenkins/ref/jenkins.yaml
 
   sonarqube:
     depends_on:
