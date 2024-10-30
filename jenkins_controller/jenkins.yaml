@@ -1,16 +1,4 @@
 jenkins:
-  nodes:
-    - permanent:
-        labelString: "agent"
-        launcher:
-          ssh:
-            credentialsId: "jenkins_agent"
-            host: "192.168.44.44"
-            port: 2222
-            sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
-        name: "agent"
-        remoteFS: "/home/jenkins/agent"
-        retentionStrategy: "always"
   securityRealm:
     local:
       users:
@@ -20,37 +8,29 @@ jenkins:
     globalMatrix:
       permissions:
         - "Overall/Administer:panda"
+  numExecutors: 0
+  nodes:
+  - permanent:
+      labelString: "agent"
+      launcher:
+        ssh:
+          credentialsId: "jenkins_agent"
+          host: "192.168.44.44"
+          port: 2222
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      name: "agent"
+      remoteFS: "/home/jenkins/agent"
+      retentionStrategy: "always"
 
-tool:
-  sonarRunnerInstallation:
-    installations:
-    - name: "SonarQube"
-      properties:
-      - installSource:
-          installers:
-          - sonarRunnerInstaller:
-              id: "5.0.1.3006"
-
-unclassified:
-  location:
-    url: "http://192.168.44.44:8880/"
-  sonarGlobalConfiguration:
-    buildWrapperEnabled: true
-    installations:
-    - name: "SonarQube"
-      serverUrl: "http://192.168.44.44:9000"
-      triggers:
-        skipScmCause: false
-        skipUpstreamCause: false
 credentials:
   system:
     domainCredentials:
     - credentials:
       - usernamePassword:
-        id: "artifactory"
-        username: "admin"
-        password: "password"
-        scope: GLOBAL
+          id: "artifactory"
+          username: "admin"
+          password: "password"
+          scope: GLOBAL
       - basicSSHUserPrivateKey:
           id: "jenkins_agent"
           username: "jenkins"
@@ -85,3 +65,25 @@ credentials:
                 o1epS4clbUspxKat9tbIIRccKa9GWXVDNLih8TslLCBoL/knJc+aqw==
                 -----END RSA PRIVATE KEY-----
           scope: GLOBAL
+
+tool:
+  sonarRunnerInstallation:
+    installations:
+    - name: "SonarQube"
+      properties:
+      - installSource:
+          installers:
+          - sonarRunnerInstaller:
+              id: "5.0.1.3006"
+
+unclassified:
+  location:
+    url: "http://192.168.44.44:8880/"
+  sonarGlobalConfiguration:
+    buildWrapperEnabled: true
+    installations:
+    - name: "SonarQube"
+      serverUrl: "http://192.168.44.44:9000"
+      triggers:
+        skipScmCause: false
+        skipUpstreamCause: false

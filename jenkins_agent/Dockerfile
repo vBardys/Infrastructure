@@ -2,6 +2,7 @@ FROM jenkins/ssh-agent:5.12.0-jdk17
 ENV DEBIAN_FRONTEND noninteractive
 USER root 
 RUN apt-get update && apt-get install -y curl git python3 python3-pip unzip ansible
+# Group ID is taken from the group ID set on host.
 RUN groupadd -g 997 docker && usermod -aG docker jenkins
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && ./aws/install
 RUN curl -fsSL https://get.docker.com/ | sh
