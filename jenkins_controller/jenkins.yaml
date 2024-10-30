@@ -1,4 +1,16 @@
 jenkins:
+  nodes:
+    - permanent:
+        labelString: "agent"
+        launcher:
+          ssh:
+            credentialsId: "jenkins_agent"
+            host: "192.168.44.44"
+            port: 2222
+            sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+        name: "agent"
+        remoteFS: "/home/jenkins/agent"
+        retentionStrategy: "always"
   securityRealm:
     local:
       users:
